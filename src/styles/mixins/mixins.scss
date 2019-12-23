@@ -1,0 +1,11 @@
+$namespace: 'hm';
+
+/* BEM
+ -------------------------- */
+@mixin b($block) {
+  $B: $namespace+'-'+$block !global;
+
+  .#{$B} {
+    @content;
+  }
+}
