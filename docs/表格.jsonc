@@ -1,0 +1,31 @@
+{
+  "columns": [
+    {
+      "title": "", // 必须。列头显示文字
+      "dataIndex": "", // 必须。列数据在数据项中对应的 key，支持 a.b.c 的嵌套写法
+      "width": "", // 列宽度
+      "align": "left" // 'left' | 'right' | 'center' 设置列内容的对齐方式
+    }
+  ], // 必须。表格列的配置描述
+  "dataSource": [
+    {}
+  ], // 必须。数据数组
+  "pagination": {
+    "total": 0, // 数据总数
+    "showSizeChanger": false, // 是否可以改变 pageSize
+    "pageSizeOptions": [
+      "10",
+      "20",
+      "30",
+      "40"
+    ], // 指定每页可以显示多少条
+    "showQuickJumper": false, // 是否可以快速跳转至某页
+    "hideOnSinglePage": false, // 只有一页时是否隐藏分页器
+    "position": "bottom" // 'top' | 'bottom' | 'both' 指定分页显示的位置
+  }, // 分页器
+  "options": {
+    "bordered": false, // 是否展示外边框和列边框
+    "showHeader": true, // 是否显示表头
+    "size": "default" // default | middle | small 表格大小
+  } // 列表属性
+}
