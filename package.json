@@ -5,17 +5,16 @@
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
+    "deploy": "gh-pages -d docs/.vuepress/dist",
+    "deploy:build": "npm run docs:build && npm run deploy",
     "clean": "rimraf lib",
     "build:style": "gulp --gulpfile build/gen-style.js",
     "build:components": "webpack --config build/webpack.component.js",
     "build:prod": "webpack --config build/webpack.prod.js",
-    "dist": "npm run test && npm run build:style && npm run build:prod && npm run build:components",
-    "deploy": "gh-pages -d docs/.vuepress/dist",
-    "deploy:build": "npm run docs:build && npm run deploy",
+    "dist": "npm run clean && npm run build:style && npm run build:prod",
     "test": "karma start test/karma.config.js --single-run"
   },
   "dependencies": {
-    "ant-design-vue": "^1.4.10",
     "async-validator": "^3.0.4",
     "core-js": "2.6.9",
     "webpack": "^4.39.2",
@@ -67,16 +66,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arronKler/hm-ui.git"
+    "url": "git+https://github.com/aygtech/hm-ui.git"
   },
   "keywords": [],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/arronKler/hm-ui/issues"
+    "url": "https://github.com/aygtech/hm-ui/issues"
   },
-  "homepage": "https://github.com/arronKler/hm-ui#readme",
+  "homepage": "https://github.com/aygtech/hm-ui#readme",
   "peerDependencies": {
-    "vue": "^2.5.2"
+    "vue": "^2.6.10"
   },
   "engines": {
     "node": ">=8.9.1",

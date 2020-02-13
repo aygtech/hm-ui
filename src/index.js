@@ -1,18 +1,21 @@
-import Antd from 'ant-design-vue'
-import 'ant-design-vue/dist/antd.css'
-import Button from './packages/button'
-import Table from './packages/table'
-
-const components = {
-  'hm-button': Button,
-  'hm-table': Table,
-}
+import components from './packages'
+import filters from './filters'
+import utils from './utils'
 
 function install(Vue) {
-  Vue.use(Antd)
+  if (install.installed) return
+
   Object.keys(components).forEach((key) => {
     Vue.component(key, components[key])
   })
+  Object.keys(filters).forEach((key) => {
+    Vue.filter(key, filters[key])
+  })
+  Vue.prototype.$utils = utils
 }
 
-export default install
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue)
+}
+export { utils }
+export default { install }

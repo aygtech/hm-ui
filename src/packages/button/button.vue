@@ -1,18 +1,13 @@
 <template>
-  <div>
-    <a-button :type="type">Primary</a-button>
+  <div class="hm-comp">
+    <a-button class="hm-buttom">Primary</a-button>
   </div>
 </template>
 
 <script>
-import { Button } from 'ant-design-vue'
-// import { oneOf } from '../../utils/assist'
-
 export default {
-  name: 'Button',
-  props: Button.props,
   created() {
-    console.log(Button.props)
+    console.log('Button.props')
   },
 }
 </script>

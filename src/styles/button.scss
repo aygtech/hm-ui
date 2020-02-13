@@ -2,6 +2,11 @@
 @import "common/var";
 @import "mixins/mixins";
 
+.hm-comp {
+  .hm-buttom {
+    color: red;
+  }
+}
 @include b(button) {
   min-width: 60px;
   height: 36px;
