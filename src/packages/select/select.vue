@@ -1,13 +1,16 @@
 <template>
   <a-select
     showSearch
-    placeholder="请输入搜索关键字"
+    :placeholder="placeholder"
     @change="change"
     @search="search"
-    :showArrow="false"
+    :size="size"
+    :allowClear="allowClear"
+    :mode="mode"
+    :showArrow="showArrow"
     :filterOption="false"
     :defaultActiveFirstOption="false"
-    style="width: 300px;"
+    style="width: 250px;"
   >
     <template v-for="(item, index) in searchList">
       <a-select-option :key="index" :value="item[props.value]">{{item[props.label]}}</a-select-option>
@@ -22,6 +25,20 @@ let currentValue = null
 export default {
   name: 'hm-select',
   props: {
+    // large small default
+    size: {
+      type: String,
+      default: 'default',
+    },
+    allowClear: {
+      type: Boolean,
+      default: true,
+    },
+    // 'default' | 'multiple' | 'tags' | 'combobox'
+    mode: {
+      type: String,
+      default: 'default',
+    },
     // 定义字段
     props: {
       type: Object,
@@ -38,6 +55,15 @@ export default {
       default() {
         return []
       },
+    },
+    // 箭头
+    showArrow: {
+      type: Boolean,
+      default: true,
+    },
+    placeholder: {
+      type: String,
+      default: '请输入搜索关键字',
     },
   },
   data() {
