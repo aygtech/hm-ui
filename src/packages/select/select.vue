@@ -34,7 +34,7 @@ export default {
       type: Boolean,
       default: true,
     },
-    // 'default' | 'multiple' | 'tags' | 'combobox'
+    // 'default' | 'multiple'
     mode: {
       type: String,
       default: 'default',
