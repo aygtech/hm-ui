@@ -68,9 +68,17 @@ export default {
   },
   data() {
     return {
-      list: [],
-      searchList: [],
+      list: [], // 原始数据列表
+      searchList: [], // 搜索后的列表
     }
+  },
+  watch: {
+    data: {
+      handler(val) {
+        this.list = val
+      },
+      deep: true,
+    },
   },
   created() {
   },
@@ -93,7 +101,7 @@ export default {
       currentValue = value
       timeout = setTimeout(() => {
         if (currentValue === value) {
-          const data = this.data.filter(val => val[this.props.label].indexOf(value) > -1)
+          const data = this.list.filter(val => val[this.props.label].indexOf(value) > -1)
           callback(data)
         }
       }, 300)
