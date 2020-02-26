@@ -1,8 +1,7 @@
 <template>
   <a-row>
-    <a-col :span="4">
-    </a-col>
-    <a-col :span="20">
+    <a-col v-bind="formItemLayout.labelCol"></a-col>
+    <a-col v-bind="formItemLayout.wrapperCol" class="form-item-list">
       <a-table :dataSource="personStepOnlyList" bordered :pagination="false" rowKey="key" style="width: 800px;">
         <a-table-column title="实发下限" dataIndex="leftVal" key="leftVal" :width="120">
           <template slot-scope="text">
@@ -27,7 +26,7 @@
                 ],
               }]"
               @blur="val => changeLevelTwoRightVal(val, index)" addonAfter="万" style="width:150px" />
-              <a-input v-else addonAfter="万" value="不限" disabled style="width:150px" />
+              <a-input v-else addonAfter="万" value="不限" disabled class="hm-rate-disabled-input" />
             </a-form-item>
           </template>
         </a-table-column>
@@ -62,7 +61,6 @@
           </template>
         </a-table-column>
       </a-table>
-      <!-- <pre>{{personStepOnlyList}}</pre> -->
     </a-col>
   </a-row>
 </template>
@@ -161,19 +159,3 @@ export default {
   },
 }
 </script>
-
-<style lang="less" scoped>
-.table-item {
-  margin: 0;
-}
-.fee-item {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding-bottom: 10px;
-}
-.fee-label {
-  padding-right: 20px;
-}
-</style>

@@ -1,9 +1,9 @@
 <template>
   <a-row>
-    <a-col :span="4"></a-col>
-    <a-col :span="20">
+    <a-col v-bind="formItemLayout.labelCol"></a-col>
+    <a-col v-bind="formItemLayout.wrapperCol">
       <template v-for="(item, i) in bothStepList">
-        <div :key="i">
+        <div class="form-item-list" :key="i">
           <a-form-item>
             <div class="fee-item">
               <span>实发金额区间：</span>
@@ -22,12 +22,10 @@
                       { validator: (rule, value, callback) => validatorInterval(rule, value, callback, i) },
                     ],
                   }]" @blur="val => changeLevelOneRightVal(val, i)" addonAfter="万" style="width:150px" class="fee-label" />
-                <a-input v-else addonAfter="万" value="不限" disabled style="width:150px" />
+                <a-input v-else addonAfter="万" value="不限" disabled class="hm-rate-disabled-input" />
               </template>
-              &nbsp;&nbsp;
-              <a-button type="primary" v-if="i === bothStepList.length - 1" @click="addLevel1(i)">追加实发区间</a-button>
-              &nbsp;&nbsp;
-              <a-button
+              <a-button type="primary" class="level-one-button" v-if="i === bothStepList.length - 1" @click="addLevel1(i)">追加实发区间</a-button>
+              <a-button class="level-one-button"
                 v-if="i > 1 && i + 1 === bothStepList.length" @click="delLevel1(i)">删除</a-button>
             </div>
           </a-form-item>
@@ -55,7 +53,7 @@
                   }]"
                   @blur="val => changeLevelTwoRightVal(val, i, index)" addonAfter="万" style="width:150px" />
                 </a-form-item>
-                <a-input v-else addonAfter="万" value="不限" disabled style="width:150px" />
+                <a-input v-else addonAfter="万" value="不限" disabled class="hm-rate-disabled-input" />
               </template>
             </a-table-column>
             <a-table-column title="结算比例" dataIndex="rate" key="rate" :width="250">
@@ -97,7 +95,6 @@
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
 export default {
   name: 'home',
   components: {
@@ -228,22 +225,3 @@ export default {
   },
 }
 </script>
-
-<style lang="less" scoped>
-.table-item {
-  margin: 0;
-}
-.fee-item {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding-bottom: 10px;
-}
-.fee-label {
-  padding-right: 20px;
-}
-.bold {
-  font-weight: bold;
-}
-</style>

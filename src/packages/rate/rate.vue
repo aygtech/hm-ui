@@ -1,7 +1,7 @@
 <template>
-  <div style="text-align:left">
-    <a-form-item label="技术平台服务费：">
-      <a-radio-group v-model="stepType">
+  <div class="hm-rate-custom-style">
+    <a-form-item label="技术平台服务费：" required>
+      <a-radio-group :value="stepType" @input="changeStepType">
         <a-radio value="NO_STEP">固定比例收费（实发金额）</a-radio>
         <a-radio value="PERSON_STEP_ONLY">不分月流水阶梯</a-radio>
         <a-radio value="BOTH_STEP">分月流水阶梯</a-radio>
@@ -19,14 +19,12 @@
     <BothStep ref="bothStep" v-if="stepType === 'BOTH_STEP'"
       :rateData="bothStepList"
       :formItemLayout="formItemLayout"></BothStep>
-    <!-- <pre>{{stepType}}</pre>
-    <pre>{{initData}}</pre> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+import _ from 'lodash'
 import PersonStep from './personStep.vue'
 import BothStep from './bothStep.vue'
 import NoStep from './noStep.vue'
@@ -56,6 +54,7 @@ const initData = [{
     },
   ],
 }]
+
 export default {
   name: 'home',
   components: {
@@ -64,9 +63,15 @@ export default {
     NoStep,
   },
   props: {
-    form: {
-      type: Object,
-      default() {},
+    rateList: {
+      type: Array,
+      default() {
+        return []
+      },
+    },
+    value: {
+      type: String,
+      default: '',
     },
     formItemLayout: {
       type: Object,
@@ -78,28 +83,46 @@ export default {
       },
     },
   },
+  watch: {
+    value(val) {
+      this.stepType = val
+    },
+    rateList: {
+      handler(val) {
+        this.init(val)
+      },
+      deep: true,
+    },
+  },
   data() {
     return {
-      stepType: 'PERSON_STEP_ONLY',
+      stepType: '',
       noStepList: [], // 固定比例收费
       personStepOnlyList: [], // 不分月流水阶梯
       bothStepList: [], // 分月流水阶梯
     }
   },
   created() {
-    this.noStepList.push(initData[0])
-    this.personStepOnlyList = initData.map((value) => {
-      const list = value
-      return list
-    })
-    this.bothStepList = initData.map((value) => {
-      const list = value
-      return list
-    })
+    this.stepType = this.value
+    this.init(this.rateList)
   },
   mounted() {
   },
   methods: {
+    init(list) {
+      console.log(list)
+      if (list.length) {
+        // 编辑
+        this.noStepList = [_.cloneDeep(list[0])]
+        this.personStepOnlyList = _.cloneDeep(list)
+        this.bothStepList = _.cloneDeep(list)
+      } else {
+        // 新增
+        this.noStepList = [_.cloneDeep(initData[0])]
+        this.personStepOnlyList = _.cloneDeep(initData)
+        this.bothStepList = _.cloneDeep(initData)
+      }
+    },
     getData() {
       switch (this.stepType) {
         case 'NO_STEP':
@@ -112,12 +135,11 @@ export default {
           return []
       }
     },
-    changeStepType(e) {
+    changeStepType(value) {
+      console.log(value)
       // NO_STEP 固定比例收费（实发金额）
       // PERSON_STEP_ONLY 不分月流水阶梯
       // BOTH_STEP 分月流水阶梯
-      this.form.resetFields()
-      const { value } = e.target
       this.stepType = value
     },
   },
