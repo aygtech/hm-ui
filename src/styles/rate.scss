@@ -1,0 +1,34 @@
+@charset "UTF-8";
+@import "common/var";
+@import "mixins/mixins";
+
+.hm-rate-custom-style {
+  text-align: left;
+  .ant-table-tbody > tr > td {
+    padding: 0px 16px !important;
+  }
+  .table-item {
+    padding-top: 20px;
+  }
+  .fee-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .fee-label {
+    padding-right: 20px;
+  }
+  .form-item-list {
+    padding-bottom: 30px;
+  }
+  .bold {
+    font-weight: bold;
+  }
+  .hm-rate-disabled-input {
+    width: 150px;
+  }
+  .level-one-button {
+    margin-left: 10px;
+  }
+}
