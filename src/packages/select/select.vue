@@ -9,7 +9,6 @@
     :mode="mode"
     :showArrow="showArrow"
     :value="selectValue"
-    @input="select"
     :filterOption="false"
     :defaultActiveFirstOption="false"
     style="width: 250px;"
@@ -103,11 +102,9 @@ export default {
         this.searchList = this.list.filter(item => item[this.props.value] === value)
       }
     },
-    select(value) {
-      this.$emit('change', value)
-    },
     change(value) {
       this.$emit('change', value)
+      this.$emit('input', value)
     },
     search(value) {
       if (!value) return
