@@ -8,6 +8,8 @@
     :allowClear="allowClear"
     :mode="mode"
     :showArrow="showArrow"
+    :value="selectValue"
+    @input="select"
     :filterOption="false"
     :defaultActiveFirstOption="false"
     style="width: 250px;"
@@ -25,6 +27,10 @@ let currentValue = null
 export default {
   name: 'hm-select',
   props: {
+    value: {
+      type: [String, Number],
+      default: '',
+    },
     // large small default
     size: {
       type: String,
@@ -68,6 +74,7 @@ export default {
   },
   data() {
     return {
+      selectValue: undefined, // 选中值
       list: [], // 原始数据列表
       searchList: [], // 搜索后的列表
     }
@@ -79,10 +86,26 @@ export default {
       },
       deep: true,
     },
+    value(val) {
+      this.selectValue = val || undefined
+      this.init(val)
+    },
   },
   created() {
+    this.list = this.data
+    this.selectValue = this.value || undefined
+    this.init(this.value)
   },
   methods: {
+    // 初始赋值
+    init(value) {
+      if (value) {
+        this.searchList = this.list.filter(item => item[this.props.value] === value)
+      }
+    },
+    select(value) {
+      this.$emit('change', value)
+    },
     change(value) {
       this.$emit('change', value)
     },
@@ -90,6 +113,7 @@ export default {
       if (!value) return
       // 根据关键字查询数据
       this.filterData(value, (data) => {
+        console.log('data', data)
         this.searchList = data
       })
     },
