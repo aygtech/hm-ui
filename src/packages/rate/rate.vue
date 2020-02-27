@@ -136,11 +136,11 @@ export default {
       }
     },
     changeStepType(value) {
-      console.log(value)
       // NO_STEP 固定比例收费（实发金额）
       // PERSON_STEP_ONLY 不分月流水阶梯
       // BOTH_STEP 分月流水阶梯
       this.stepType = value
+      this.$emit('input', value)
     },
   },
 }
