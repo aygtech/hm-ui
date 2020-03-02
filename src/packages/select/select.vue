@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import _ from 'lodash'
+
 let timeout = null
 let currentValue = null
 
@@ -98,7 +100,9 @@ export default {
   methods: {
     // 初始赋值
     init(value) {
-      if (value) {
+      if (_.isArray(value)) {
+        this.searchList = this.list.filter(item => value.indexOf(item[this.props.value]) > -1)
+      } else {
         this.searchList = this.list.filter(item => item[this.props.value] === value)
       }
     },
