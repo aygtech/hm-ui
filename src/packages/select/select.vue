@@ -109,8 +109,7 @@ export default {
     search(value) {
       if (!value) return
       // 根据关键字查询数据
-      this.filterData(value, (data) => {
-        console.log('data', data)
+      this.filterData(value.trim(), (data) => {
         this.searchList = data
       })
     },
