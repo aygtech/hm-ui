@@ -107,9 +107,10 @@ export default {
       this.$emit('input', value)
     },
     search(value) {
-      if (!value) return
+      const val = value.trim()
+      if (!val) return
       // 根据关键字查询数据
-      this.filterData(value.trim(), (data) => {
+      this.filterData(val, (data) => {
         this.searchList = data
       })
     },
