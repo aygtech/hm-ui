@@ -29,7 +29,7 @@ export default {
   name: 'hm-select',
   props: {
     value: {
-      type: [String, Number],
+      type: [String, Number, Array],
       default: '',
     },
     // large small default
