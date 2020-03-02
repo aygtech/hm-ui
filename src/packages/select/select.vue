@@ -89,7 +89,7 @@ export default {
     },
     value(val) {
       this.selectValue = val || undefined
-      this.init(val)
+      // this.init(val)
     },
   },
   created() {
