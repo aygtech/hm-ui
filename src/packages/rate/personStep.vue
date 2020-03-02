@@ -2,7 +2,7 @@
   <a-row>
     <a-col v-bind="formItemLayout.labelCol"></a-col>
     <a-col v-bind="formItemLayout.wrapperCol" class="form-item-list">
-      <a-table :dataSource="personStepOnlyList" bordered :pagination="false" rowKey="key" style="width: 800px;">
+      <a-table :dataSource="personStepOnlyList" bordered :pagination="false" rowKey="key">
         <a-table-column title="实发下限" dataIndex="leftVal" key="leftVal" :width="120">
           <template slot-scope="text">
             <span>{{text}}万</span>

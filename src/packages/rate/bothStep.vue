@@ -29,7 +29,7 @@
                 v-if="i > 1 && i + 1 === bothStepList.length" @click="delLevel1(i)">删除</a-button>
             </div>
           </a-form-item>
-          <a-table :dataSource="item.totalStepValWithRateDTOList" bordered :pagination="false" rowKey="key" :width="250">
+          <a-table :dataSource="item.totalStepValWithRateDTOList" bordered :pagination="false" rowKey="key">
             <a-table-column title="月流水下限" dataIndex="leftVal" key="leftVal">
               <template slot-scope="text">
                 <span>{{text}}万</span>
