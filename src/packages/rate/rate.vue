@@ -110,7 +110,6 @@ export default {
   },
   methods: {
     init(list) {
-      console.log(list)
       if (list.length) {
         // 编辑
         this.noStepList = [_.cloneDeep(list[0])]
