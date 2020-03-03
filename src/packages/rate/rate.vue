@@ -1,6 +1,6 @@
 <template>
   <div class="hm-rate-custom-style">
-    <a-form-item label="技术平台服务费：" required>
+    <a-form-item :label="label" required>
       <a-radio-group :value="stepType" @input="changeStepType">
         <a-radio value="NO_STEP">固定比例收费（实发金额）</a-radio>
         <a-radio value="PERSON_STEP_ONLY">不分月流水阶梯</a-radio>
@@ -72,6 +72,10 @@ export default {
     value: {
       type: String,
       default: '',
+    },
+    label: {
+      type: String,
+      default: '技术平台服务费：',
     },
     formItemLayout: {
       type: Object,
