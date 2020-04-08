@@ -1,5 +1,5 @@
 {
-  "name": "@aygtech/hm-ui",
+  "name": "@ayg/hm-ui",
   "version": "1.0.0",
   "main": "lib/hm-ui.min.js",
   "scripts": {
@@ -12,7 +12,8 @@
     "build:components": "webpack --config build/webpack.component.js",
     "build:prod": "webpack --config build/webpack.prod.js",
     "dist": "npm run clean && npm run build:style && npm run build:prod",
-    "test": "karma start test/karma.config.js --single-run"
+    "test": "karma start test/karma.config.js --single-run",
+    "prepublishOnly": "npm run dist"
   },
   "dependencies": {
     "async-validator": "^3.0.4",
