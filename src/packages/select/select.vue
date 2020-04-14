@@ -11,6 +11,7 @@
     :value="selectValue"
     :filterOption="false"
     :defaultActiveFirstOption="false"
+    :notFoundContent="searching ? undefined : null"
     style="width: 250px;"
   >
     <template v-for="(item, index) in searchList">
@@ -39,7 +40,7 @@ export default {
     },
     allowClear: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     // 'default' | 'multiple'
     mode: {
@@ -66,7 +67,7 @@ export default {
     // 箭头
     showArrow: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     placeholder: {
       type: String,
@@ -75,6 +76,7 @@ export default {
   },
   data() {
     return {
+      searching: false,
       selectValue: undefined, // 选中值
       list: [], // 原始数据列表
       searchList: [], // 搜索后的列表
@@ -107,6 +109,7 @@ export default {
       }
     },
     change(value) {
+      this.searching = false
       this.$emit('change', value)
       this.$emit('input', value)
     },
@@ -114,8 +117,10 @@ export default {
       const val = value.trim()
       if (!val) return
       // 根据关键字查询数据
+      this.searching = true
       this.filterData(val, (data) => {
         this.searchList = data
+        this.searching = false
       })
     },
     filterData(value, callback) {
