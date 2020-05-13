@@ -12,7 +12,12 @@ function random(lower, upper) {
   return Math.random() * (upper - lower) + lower
 }
 
+function trim(str) {
+  return str.replace(/\s+/g, '')
+}
+
 export default {
   ...url,
   random,
+  trim,
 }
