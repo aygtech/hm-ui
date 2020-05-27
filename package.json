@@ -1,6 +1,6 @@
 {
   "name": "@ayg/hm-ui",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "main": "lib/hm-ui.min.js",
   "scripts": {
     "docs:dev": "vuepress dev docs",

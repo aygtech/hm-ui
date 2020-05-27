@@ -1,6 +1,6 @@
 import components from './packages'
 import filters from './filters'
-import utils from './utils'
+// import utils from './utils'
 
 function install(Vue) {
   if (install.installed) return
@@ -11,11 +11,11 @@ function install(Vue) {
   Object.keys(filters).forEach((key) => {
     Vue.filter(key, filters[key])
   })
-  Vue.prototype.$utils = utils
+  // Vue.prototype.$utils = utils
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
-export { utils }
+// export { utils }
 export default { install }
