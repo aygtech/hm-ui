@@ -9,6 +9,7 @@
     :mode="mode"
     :showArrow="showArrow"
     :value="selectValue"
+    :labelInValue="labelInValue"
     :filterOption="false"
     :defaultActiveFirstOption="false"
     :notFoundContent="searching ? undefined : null"
@@ -30,7 +31,7 @@ export default {
   name: 'hm-select',
   props: {
     value: {
-      type: [String, Number, Array],
+      type: [String, Number, Array, Object],
       default: '',
     },
     // large small default
@@ -73,6 +74,10 @@ export default {
       type: String,
       default: '请输入搜索关键字',
     },
+    labelInValue: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -86,6 +91,7 @@ export default {
     data: {
       handler(val) {
         this.list = val
+        this.searchList = []
       },
       deep: true,
     },
